@@ -1,14 +1,15 @@
 # Add a declarative step here for populating the DB with movies.
 
-Given /the following movies exist/ do |movies_table|
+Given (/the following movies exist:/) do |movies_table|
   movies_table.hashes.each do |movie|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
+    Movie.create!(  title: movie[:title],  rating: movie[:rating],  release_date: movie[:release_date])
   end
-  fail "Unimplemented"
+  # fail "Unimplemented"
 end
 
-Then /(.*) seed movies should exist/ do | n_seeds |
+Then (/(.*) seed movies should exist/) do | n_seeds |
   Movie.count.should be n_seeds.to_i
 end
 
@@ -35,4 +36,20 @@ end
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
   fail "Unimplemented"
+end
+
+
+Then (/ I should see all the following movies: (.*)$/) do |e1|
+  movies = e1.split(', ')
+  movies.each do |movie|
+      expect(page).to have_content(movie)
+  end
+end
+
+
+Then (/I should not see all the following movies: (.*)$/) do |e1|
+  movies = e1.split(', ')
+  movies.each do |movie|
+      expect(page).not_to have_content(movie)
+  end
 end
