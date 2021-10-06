@@ -22,9 +22,7 @@ Then (/I should see "(.*)" before "(.*)"/) do |a, b|
   #  page.body is the entire content of the page as a string.
   # log(page.find('div', text: e1)).value)
   # log(page.find('div', text: e2)).value)
-  first_pos=page.body.index(a)
-  second_pos=page.body.index(b)
-  expect(first_pos).to be < second_pos
+  expect(page.body).to have_content(/#{a}(.*)#{b}/m)
 end
 
 # Make it easier to express checking or unchecking several boxes at once
