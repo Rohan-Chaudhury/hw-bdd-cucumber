@@ -34,9 +34,9 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   Then I should see all the following movies: The Incredibles, When Harry Met Sally,  Raiders of the Lost Ark, Amelie,  The Terminator
   And I should not see all the following movies:  Chicken Run,  2001: A Space Odyssey, Chocolat, Aladdin, The Help 
   
-  Given I check the following ratings: G
+  Given I check the following ratings: G, PG, R
   And I press the "Refresh" button
-  Then I should see all the following movies: 2001: A Space Odyssey, Aladdin, Chicken Run 
+  Then I should see all the following movies: 2001: A Space Odyssey, Aladdin, Chicken Run, The Incredibles, When Harry Met Sally,  Raiders of the Lost Ark, Amelie,  The Terminator
   And I should not see all the following movies: Chocolat, The Help 
 
 Scenario: all ratings selected
