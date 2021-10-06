@@ -67,7 +67,7 @@ end
 
 Then (/I should see all the following movies: (.*)$/) do |e1|
   movies = e1.split(', ')
-  movies.each do |movie|
+  for movie in movies do
       expect(page).to have_content(movie)
   end
 end
@@ -75,7 +75,7 @@ end
 
 Then (/I should not see all the following movies: (.*)$/) do |e1|
   movies = e1.split(', ')
-  movies.each do |movie|
+  for movie in movies do
       expect(page).not_to have_content(movie)
   end
 end
