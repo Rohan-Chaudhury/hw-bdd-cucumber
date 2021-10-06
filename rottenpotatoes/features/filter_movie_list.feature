@@ -28,19 +28,40 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   # enter step to "submit" the search form on the homepage
   # enter step(s) to ensure that PG and R movies are visible
   # enter step(s) to ensure that other movies are not visible
-  When I check the following ratings: R, PG
-  When I uncheck the following ratings: G, PG-13 
-  And I press the "Refresh" button
-  Then I should see all the following movies: The Incredibles, When Harry Met Sally,  Raiders of the Lost Ark, Amelie,  The Terminator
-  And I should not see all the following movies:  Chicken Run,  2001: A Space Odyssey, Chocolat, Aladdin, The Help 
+  When I check "ratings[R]"
+  And I check "ratings[PG]"
+  And I uncheck "ratings[G]"
+  And I uncheck "ratings[PG-13]"
+  And I press "Refresh"
+  Then I should see "The Incredibles"
+  And I should see "When Harry Met Sally"
+  And I should see "Raiders of the Lost Ark"
+  And I should see "Amelie"
+  And I should see "The Terminator"
+  
+  And I should not see "Chicken Run"
+  And I should not see "2001: A Space Odyssey"
+  And I should not see "Aladdin"
+  And I should not see "Chocolat"
+  And I should not see "The Help"
   
   Given I check the following ratings: G, PG, R
-  And I press the "Refresh" button
-  Then I should see all the following movies: 2001: A Space Odyssey, Aladdin, Chicken Run, The Incredibles, When Harry Met Sally,  Raiders of the Lost Ark, Amelie,  The Terminator
-  And I should not see all the following movies: Chocolat, The Help 
+  And I press "Refresh"
+  
+  Then I should see "The Incredibles"
+  And I should see "When Harry Met Sally"
+  And I should see "Raiders of the Lost Ark"
+  And I should see "Amelie"
+  And I should see "The Terminator"
+  And I should see "Chicken Run"
+  And I should see "2001: A Space Odyssey"
+  And I should see "Aladdin"
+  
+  And I should not see "Chocolat"
+  And I should not see "The Help"
 
 Scenario: all ratings selected
   # see assignment
   When I check the following ratings: G, PG, PG-13, R
-  And I press the "Refresh" button
+  And I press "Refresh"
   Then I should see all the movies
