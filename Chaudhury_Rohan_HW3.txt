@@ -95,4 +95,4 @@ Feature: display list of movies sorted by different criteria
 
 4 scenarios (4 passed)
 50 steps (50 passed)
-0m0.712s
+0m0.675s
